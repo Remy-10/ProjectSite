@@ -3,153 +3,210 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-      rel="stylesheet"
-    />
+    <title>You're Cute! 💖</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600;700&display=swap");
+
+      body {
+        background: linear-gradient(45deg, #ff9a9e, #fecfef, #fecfef, #ff9a9e);
+        background-size: 400% 400%;
+        animation: gradientShift 4s ease infinite;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: "Quicksand", sans-serif;
+        overflow: hidden;
+      }
+
+      @keyframes gradientShift {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .cute-container {
+        text-align: center;
+        position: relative;
+      }
+
+      .main-text {
+        font-size: 4rem;
+        font-weight: 700;
+        color: #fff;
+        text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+        animation: bounce 2s ease-in-out infinite;
+        margin-bottom: 2rem;
+      }
+
+      @keyframes bounce {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+          transform: translateY(0);
+        }
+        40% {
+          transform: translateY(-20px);
+        }
+        60% {
+          transform: translateY(-10px);
+        }
+      }
+
+      .hearts {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+      }
+
+      .heart {
+        position: absolute;
+        font-size: 2rem;
+        color: #ff69b4;
+        animation: float 3s ease-in-out infinite;
+        opacity: 0.8;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(100vh) rotate(0deg);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-100px) rotate(360deg);
+          opacity: 0;
+        }
+      }
+
+      .sparkle {
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        background: #fff;
+        border-radius: 50%;
+        animation: sparkle 2s ease-in-out infinite;
+      }
+
+      @keyframes sparkle {
+        0%,
+        100% {
+          opacity: 0;
+          transform: scale(0);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .cute-emoji {
+        font-size: 3rem;
+        animation: wiggle 1s ease-in-out infinite;
+        display: inline-block;
+        margin: 0 10px;
+      }
+
+      @keyframes wiggle {
+        0%,
+        100% {
+          transform: rotate(0deg);
+        }
+        25% {
+          transform: rotate(5deg);
+        }
+        75% {
+          transform: rotate(-5deg);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .main-text {
+          font-size: 2.5rem;
+        }
+        .cute-emoji {
+          font-size: 2rem;
+        }
+      }
+    </style>
   </head>
 
-  <body style="background: #fff; margin: 0; padding: 0">
-    <iframe
-      src="https://www.geogebra.org/classic"
-      width="100%"
-      height="730"
-      style="
-        border: 0;
-        display: block;
-        margin: 0 auto 2rem auto;
-        width: 100%;
-        max-width: 100vw;
-        box-sizing: border-box;
-      "
-    ></iframe>
-    <div id="toggle-content" style="display: none">
-      <div
-        id="picture-box"
-        style="
-          width: 320px;
-          height: 70px;
-          background: #f0f0f0;
-          border: 2px solid #00aaff;
-          border-radius: 12px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          margin: 2rem auto 1rem auto;
-          font-family: Montserrat, sans-serif;
-          font-size: 1.2rem;
-          color: #00aaff;
-          transition: background 0.2s;
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-        "
-      >
-        <select
-          id="picture-select"
-          style="
-            width: 90%;
-            font-size: 1rem;
-            padding: 0.5rem;
-            border-radius: 6px;
-            border: 1px solid #00aaff;
-            background: #fff;
-            color: #00aaff;
-          "
-        >
-          <option value="">LIATE</option>
-          <option value="pictures/bewijsBinomialeGetallen.png">
-            Bewijs Binomiale Getallen
-          </option>
-          <option value="pictures/formulesGroepenenzo.jpg">
-            Formules Groepen enzo
-          </option>
-        </select>
-      </div>
-      <div
-        id="picture-display"
-        style="display: flex; justify-content: center; margin-top: 1rem"
-      ></div>
-      <div
-        style="
-          width: 100vw;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          margin-top: 2rem;
-        "
-      >
-        <a
-          href="https://chat.openai.com/"
-          target="_blank"
-          rel="noopener"
-          style="
-            background: #00aaff;
-            color: #fff;
-            border: none;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            font-size: 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-            cursor: pointer;
-            transition: background 0.2s;
-            text-decoration: none;
-          "
-          title="Go to ChatGPT"
-          onmouseover="this.style.background='#0088cc'"
-          onmouseout="this.style.background='#00aaff'"
-        >
-          <span
-            style="
-              font-family: 'Cambria Math', 'STIXGeneral', 'DejaVu Sans', 'Arial',
-                sans-serif;
-              font-size: 2.2rem;
-            "
-            >&#8721;</span
-          >
-        </a>
-      </div>
+  <body>
+    <div class="cute-container">
+      <div class="main-text">You're Cute!</div>
     </div>
+
+    <div class="hearts" id="hearts"></div>
+
     <script>
-      // Toggle content with the 't' key
-      document.addEventListener("keydown", function (e) {
-        if (e.key === "t" || e.key === "T") {
-          const content = document.getElementById("toggle-content");
-          content.style.display =
-            content.style.display === "none" ? "block" : "none";
+      // Create floating hearts
+      function createHeart() {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = Math.random() > 0.5 ? "💖" : "💕";
+        heart.style.left = Math.random() * 100 + "%";
+        heart.style.animationDelay = Math.random() * 2 + "s";
+        heart.style.animationDuration = 3 + Math.random() * 2 + "s";
+        document.getElementById("hearts").appendChild(heart);
+
+        setTimeout(() => {
+          heart.remove();
+        }, 5000);
+      }
+
+      // Create sparkles
+      function createSparkle() {
+        const sparkle = document.createElement("div");
+        sparkle.className = "sparkle";
+        sparkle.style.left = Math.random() * 100 + "%";
+        sparkle.style.top = Math.random() * 100 + "%";
+        sparkle.style.animationDelay = Math.random() * 2 + "s";
+        document.body.appendChild(sparkle);
+
+        setTimeout(() => {
+          sparkle.remove();
+        }, 2000);
+      }
+
+      // Generate hearts and sparkles
+      setInterval(createHeart, 800);
+      setInterval(createSparkle, 400);
+
+      // Add click interaction
+      document.addEventListener("click", function (e) {
+        for (let i = 0; i < 5; i++) {
+          const heart = document.createElement("div");
+          heart.innerHTML = "💖";
+          heart.style.position = "absolute";
+          heart.style.left = e.clientX + (Math.random() - 0.5) * 100 + "px";
+          heart.style.top = e.clientY + (Math.random() - 0.5) * 100 + "px";
+          heart.style.fontSize = "1.5rem";
+          heart.style.color = "#ff69b4";
+          heart.style.pointerEvents = "none";
+          heart.style.animation = "float 2s ease-out forwards";
+          document.body.appendChild(heart);
+
+          setTimeout(() => {
+            heart.remove();
+          }, 2000);
         }
       });
-
-      // Show selected picture, make long images bigger
-      document.getElementById("picture-select").onchange = function () {
-        const display = document.getElementById("picture-display");
-        display.innerHTML = ""; // Remove previous image
-        const val = this.value;
-        if (val) {
-          const img = document.createElement("img");
-          img.src = val;
-          img.alt = "Gekozen afbeelding";
-          img.onload = function () {
-            // If the image is much taller than wide, make it taller
-            if (img.naturalHeight > img.naturalWidth * 1.5) {
-              img.style.maxHeight = "80vh";
-              img.style.maxWidth = "60vw";
-            } else {
-              img.style.maxWidth = "90vw";
-              img.style.maxHeight = "400px";
-            }
-            img.style.borderRadius = "10px";
-            img.style.boxShadow = "0 2px 8px rgba(0,0,0,0.12)";
-          };
-          display.appendChild(img);
-        }
-      };
     </script>
   </body>
-
-  <footer></footer>
 </html>
